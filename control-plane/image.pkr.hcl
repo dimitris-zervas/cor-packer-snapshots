@@ -51,6 +51,7 @@ source "hcloud" "builder" {
   server_type     = var.server_type
   ssh_username    = var.ssh_username
   snapshot_labels = var.snapshot_labels
+  snapshot_name = "controle-plane-${slice(${var.commit_hash}, 0, 7)}"
 }
 
 build {
