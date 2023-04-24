@@ -41,9 +41,9 @@ jobs:
       - name: Run 'packer validate'
         id: validate
         if: github.event_name == 'pull_request'
-        run: "packer validate -var-file control-plane/variables.pkvars.hcl control-plane/image.pkr.hcl"
+        run: "packer validate -var-file control-plane/variables.pkvars.hcl -var 'commit_hash=${{ github.sha }}' control-plane/image.pkr.hcl"
 
       - name: Run 'packer build'
         id: build
         if: github.event_name == 'push'
-        run: "packer build -var-file control-plane/variables.pkvars.hcl control-plane/image.pkr.hcl"
+        run: "packer build -var-file control-plane/variables.pkvars.hcl -var 'commit_hash=${{ github.sha }}' control-plane/image.pkr.hcl"

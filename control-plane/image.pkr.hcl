@@ -39,6 +39,10 @@ variable "COR_MASTER_SSH_PUB_KEY" {
   default = "${env("COR_MASTER_SSH_PUB_KEY")}"
 }
 
+variable "commit_hash" {
+  type    = string
+}
+
 
 source "hcloud" "builder" {
   token           = var.hcloud_token
@@ -47,6 +51,7 @@ source "hcloud" "builder" {
   server_type     = var.server_type
   ssh_username    = var.ssh_username
   snapshot_labels = var.snapshot_labels
+  snapshot_name = "controle-plane-${substr(var.commit_hash, 0, 7)}}"
 }
 
 build {
