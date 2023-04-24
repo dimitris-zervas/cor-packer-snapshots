@@ -28,22 +28,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup `packer`
+      - name: Setup packer
         uses: hashicorp/setup-packer@main
         id: setup
         with:
           version: ${{ env.PACKER_VERSION }}
 
-      - name: Run `packer init`
+      - name: Run 'packer init'
         id: init
         run: "packer init control-plane/image.pkr.hcl"
 
-      - name: Run `packer validate`
+      - name: Run 'packer validate'
         id: validate
         if: github.event_name == 'pull_request'
-        run: "packer validate -var-file control`-plane/variables.pkvars.hcl control-plane/image.pkr.hcl"
+        run: "packer validate -var-file control-plane/variables.pkvars.hcl control-plane/image.pkr.hcl"
 
-      - name: Run `packer build`
+      - name: Run 'packer build'
         id: build
         if: github.event_name == 'push'
         run: "packer build -var-file control-plane/variables.pkvars.hcl control-plane/image.pkr.hcl"
