@@ -1,0 +1,49 @@
+name: Packer builder of Hetzner snapshots
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/control_plane_builder.yaml'
+      - control-plane/**
+  
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/control_plane_builder.yaml'
+      - control-plane/**
+
+env:
+  PACKER_VERSION: "1.8.6" # or: "latest"
+  # Herzner token
+  HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN }}
+
+jobs:
+  packer:
+    runs-on: ubuntu-latest
+    name: Run Packer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup packer
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: ${{ env.PACKER_VERSION }}
+
+      - name: Run 'packer init'
+        id: init
+        run: "packer init control-plane/image.pkr.hcl"
+
+      - name: Run 'packer validate'
+        id: validate
+        if: github.event_name == 'pull_request'
+        run: "packer validate -var-file control-plane/variables.pkvars.hcl -var 'commit_hash=${{ github.sha }}' control-plane/image.pkr.hcl"
+
+      - name: Run 'packer build'
+        id: build
+        if: github.event_name == 'push'
+        run: "packer build -var-file control-plane/variables.pkvars.hcl -var 'commit_hash=${{ github.sha }}' control-plane/image.pkr.hcl"
