@@ -7,10 +7,6 @@ cor_pubkey_env_var=${SSH_PUB_KEY}
 echo "----"
 echo $cor_pubkey_env_var
 echo "---"
-echo ${SSH_PUB_KEY}
-echo "---"
-# echo $root_pubkey_env_var
-# echo "----"
 
 # Create the user "cor" with home directory and set Bash as default shell
 useradd -m -s /bin/bash $username
@@ -24,6 +20,6 @@ echo "$username ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$username
 # Add the SSH public key for the user "cor"
 mkdir -p /home/$username/.ssh
 # echo "$cor_pubkey_env_var" >> /home/$username/.ssh/authorized_keys
-echo "${SSH_PUB_KEY}" >> /home/$username/.ssh/authorized_keys
+echo "$cor_pubkey_env_var" >> /home/$username/.ssh/authorized_keys
 chmod 600 /home/$username/.ssh/authorized_keys
 chown -R $username:$username /home/$username/.ssh

@@ -60,7 +60,7 @@ build {
   # Add the COR user
   provisioner "shell" {
     environment_vars = [
-      "COR_MASTER_SSH_PUB_KEY=${var.COR_MASTER_SSH_PUB_KEY}",
+      "SSH_PUB_KEY=${var.COR_MASTER_SSH_PUB_KEY}",
     ]
     scripts = ["scripts/create_user.sh"]
   }

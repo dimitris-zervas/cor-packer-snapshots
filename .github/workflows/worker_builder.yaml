@@ -19,6 +19,8 @@ env:
   PACKER_VERSION: "1.8.6" # or: "latest"
   # Herzner token
   HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN }}
+  # Worker Node COR user pub key
+  COR_NODE_SSH_PUB_KEY: ${{ secrets.COR_NODE_SSH_PUB_KEY }}
 
 jobs:
   packer:
