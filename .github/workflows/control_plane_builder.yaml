@@ -34,14 +34,14 @@ jobs:
 
       - name: Run `packer init`
         id: init
-        run: "packer init control_plane/image.pkr.hcl"
+        run: "packer init control-plane/image.pkr.hcl"
 
       - name: Run `packer validate`
         id: validate
         if: github.event_name == 'pull_request'
-        run: "packer validate control_plane/image.pkr.hcl"
+        run: "packer validate -var-file control-plane/variables.pkvars.hcl control-plane/image.pkr.hcl"
 
       - name: Run `packer build`
         id: build
         if: github.event_name == 'push'
-        run: "packer build -var-file variables.pkrvars.hcl ./control_plane/image.pkr.hcl"
+        run: "packer build -var-file control-plane/variables.pkvars.hcl control-plane/image.pkr.hcl"
