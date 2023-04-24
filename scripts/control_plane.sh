@@ -10,7 +10,3 @@ mkdir -p /home/cor/.kube
 EOF
 echo "Out"
 whoami
-
-
-# sudo cp -i /etc/kubernetes/admin.conf /home/cor/.kube/config
-# sudo chown 1000:1000 /home/cor/.kube/config
