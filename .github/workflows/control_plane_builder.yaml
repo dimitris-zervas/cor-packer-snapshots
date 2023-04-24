@@ -1,4 +1,4 @@
-name: Packer builder of Hetzner snapshots
+name: Packer builder of Hetzner snapshots for Control Plane nodes
 
 on:
   push:
