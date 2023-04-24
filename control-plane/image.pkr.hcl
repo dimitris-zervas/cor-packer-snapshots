@@ -51,7 +51,7 @@ source "hcloud" "builder" {
   server_type     = var.server_type
   ssh_username    = var.ssh_username
   snapshot_labels = var.snapshot_labels
-  snapshot_name = "controle-plane-${slice('asdfaslkdfjas', 0, 7)}}"
+  snapshot_name = "controle-plane-${slice("asdfaslkdfjas", 0, 7)}}"
 }
 
 build {
