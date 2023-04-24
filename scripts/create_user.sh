@@ -2,7 +2,7 @@
 
 # Set the username and public key environment variable name
 username=cor
-cor_pubkey_env_var=${COR_MASTER_SSH_PUB_KEY}
+cor_pubkey_env_var=${SSH_PUB_KEY}
 
 echo "----"
 echo $cor_pubkey_env_var
