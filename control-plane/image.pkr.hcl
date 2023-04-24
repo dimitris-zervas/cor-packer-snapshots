@@ -39,6 +39,10 @@ variable "COR_MASTER_SSH_PUB_KEY" {
   default = "${env("COR_MASTER_SSH_PUB_KEY")}"
 }
 
+variable "commit_hash" {
+  type    = string
+}
+
 
 source "hcloud" "builder" {
   token           = var.hcloud_token
