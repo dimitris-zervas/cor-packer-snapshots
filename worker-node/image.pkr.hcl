@@ -43,7 +43,6 @@ variable "commit_hash" {
   type    = string
 }
 
-
 source "hcloud" "builder" {
   token           = var.hcloud_token
   image           = var.base_image

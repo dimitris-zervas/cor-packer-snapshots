@@ -7,8 +7,6 @@ cor_pubkey_env_var=${SSH_PUB_KEY}
 echo "----"
 echo $cor_pubkey_env_var
 echo "---"
-# echo $root_pubkey_env_var
-# echo "----"
 
 # Create the user "cor" with home directory and set Bash as default shell
 useradd -m -s /bin/bash $username
