@@ -34,7 +34,7 @@ variable "hcloud_token" {
   default = "${env("HCLOUD_TOKEN")}"
 }
 
-variable "COR_MASTER_SSH_PUB_KEY" {
+variable "COR_NODE_SSH_PUB_KEY" {
   type    = string
   default = "${env("COR_NODE_SSH_PUB_KEY")}"
 }
@@ -60,7 +60,7 @@ build {
   # Add the COR user
   provisioner "shell" {
     environment_vars = [
-      "COR_MASTER_SSH_PUB_KEY=${var.COR_MASTER_SSH_PUB_KEY}",
+      "SSH_PUB_KEY=${var.COR_NODE_SSH_PUB_KEY}",
     ]
     scripts = ["scripts/create_user.sh"]
   }
