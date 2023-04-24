@@ -70,22 +70,9 @@ build {
     scripts = ["scripts/crio.sh"]
   }
 
-  # Install kubeadm, kubelet and kubectl
+  # Install kubectl
   provisioner "shell" {
     scripts = ["scripts/kube_tools_worker.sh"]
-  }
-
-  # Upload the 20-hcloud.conf
-  provisioner "file" {
-    source      = "files/20-hcloud.conf"
-    destination = "/tmp/20-hcloud.conf"
-  }
-
-  provisioner "shell" {
-    inline = [
-      "mv /tmp/20-hcloud.conf /etc/systemd/system/kubelet.service.d/20-hcloud.conf",
-      "chmod 644 /etc/systemd/system/kubelet.service.d/20-hcloud.conf",
-    ]
   }
 }
 
