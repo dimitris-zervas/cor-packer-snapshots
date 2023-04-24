@@ -17,6 +17,8 @@ on:
 
 env:
   PACKER_VERSION: "1.8.6" # or: "latest"
+  # Herzner token
+  TF_VAR_HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN }}
 
 jobs:
   packer:
@@ -39,7 +41,7 @@ jobs:
       - name: Run `packer validate`
         id: validate
         if: github.event_name == 'pull_request'
-        run: "packer validate -var-file control-plane/variables.pkvars.hcl control-plane/image.pkr.hcl"
+        run: "packer validate -var-file control`-plane/variables.pkvars.hcl control-plane/image.pkr.hcl"
 
       - name: Run `packer build`
         id: build
