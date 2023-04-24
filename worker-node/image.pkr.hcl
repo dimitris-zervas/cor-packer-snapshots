@@ -36,7 +36,7 @@ variable "hcloud_token" {
 
 variable "COR_MASTER_SSH_PUB_KEY" {
   type    = string
-  default = "${env("COR_MASTER_SSH_PUB_KEY")}"
+  default = "${env("COR_NODE_SSH_PUB_KEY")}"
 }
 
 variable "commit_hash" {
@@ -51,7 +51,7 @@ source "hcloud" "builder" {
   server_type     = var.server_type
   ssh_username    = var.ssh_username
   snapshot_labels = var.snapshot_labels
-  snapshot_name = "controle-plane-${substr(var.commit_hash, 0, 7)}"
+  snapshot_name = "worker-${substr(var.commit_hash, 0, 7)}"
 }
 
 build {
@@ -72,7 +72,7 @@ build {
 
   # Install kubeadm, kubelet and kubectl
   provisioner "shell" {
-    scripts = ["scripts/kube_tools_control_plane.sh"]
+    scripts = ["scripts/kube_tools_worker.sh"]
   }
 
   # Upload the 20-hcloud.conf
