@@ -19,6 +19,7 @@ echo "$username ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$username
 
 # Add the SSH public key for the user "cor"
 mkdir -p /home/$username/.ssh
+# echo "$cor_pubkey_env_var" >> /home/$username/.ssh/authorized_keys
 echo "$cor_pubkey_env_var" >> /home/$username/.ssh/authorized_keys
 chmod 600 /home/$username/.ssh/authorized_keys
 chown -R $username:$username /home/$username/.ssh
