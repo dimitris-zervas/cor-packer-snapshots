@@ -39,6 +39,7 @@ variable "COR_NODE_SSH_PUB_KEY" {
   default = "${env("COR_NODE_SSH_PUB_KEY")}"
 }
 
+
 variable "commit_hash" {
   type    = string
 }
