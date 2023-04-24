@@ -18,7 +18,7 @@ on:
 env:
   PACKER_VERSION: "1.8.6" # or: "latest"
   # Herzner token
-  TF_VAR_HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN }}
+  HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN }}
 
 jobs:
   packer:
