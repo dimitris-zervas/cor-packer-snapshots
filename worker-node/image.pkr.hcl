@@ -20,13 +20,8 @@ variable "ssh_username" {
   default = "root"
 }
 
-
 variable "server_type" {
   type = string
-}
-
-variable snapshot_labels {
-  type = map(string)
 }
 
 variable "hcloud_token" {
