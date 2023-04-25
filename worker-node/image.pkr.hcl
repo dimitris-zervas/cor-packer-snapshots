@@ -50,8 +50,11 @@ source "hcloud" "builder" {
   location        = var.location
   server_type     = var.server_type
   ssh_username    = var.ssh_username
-  snapshot_labels = var.snapshot_labels
   snapshot_name = "worker-${substr(var.commit_hash, 0, 7)}"
+  snapshot_labels = {
+    "commit_hash" = "${substr(var.commit_hash, 0, 7)}"
+    "type"        = "worker"
+  }
 }
 
 build {
@@ -75,6 +78,3 @@ build {
     scripts = ["scripts/kube_tools_worker.sh"]
   }
 }
-
-
-
