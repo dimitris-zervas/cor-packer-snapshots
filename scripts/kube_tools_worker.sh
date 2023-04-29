@@ -11,4 +11,4 @@ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://a
 
 # Install kubeadm, kubelet
 apt-get update
-apt-get install -y kubectl=1.26.3-00
+apt-get install -y kubectl=1.26.3-00 kubeadm=1.26.3-00
