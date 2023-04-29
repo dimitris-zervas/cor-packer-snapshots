@@ -7,6 +7,8 @@ on:
     paths:
       - '.github/workflows/worker_builder.yaml'
       - worker-node/**
+      - scripts/**
+      - '!scripts/kube_tools_control_plane.sh'
   
   pull_request:
     branches:
@@ -14,6 +16,8 @@ on:
     paths:
       - '.github/workflows/worker_builder.yaml'
       - worker-node/**
+      - scripts/**
+      - '!scripts/kube_tools_control_plane.sh'
 
 env:
   PACKER_VERSION: "1.8.6" # or: "latest"
